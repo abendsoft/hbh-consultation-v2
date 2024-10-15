@@ -1,0 +1,37 @@
+{
+    "jsc": {
+        "parser": {
+            "syntax": "typescript",
+            "decorators": true
+        },
+        "transform": {
+            "react": {
+                "runtime": "automatic"
+            }
+        },
+        "baseUrl": "./server",
+        "paths": {
+            "#server/*": ["*"],
+            "#shopify/*": ["shopify/*"],
+            "#configs/*": ["configs/*"],
+            "#utils/*": ["utils/*"],
+            "#routes/*": ["routes/*"],
+            "#schema/*": ["schema/*"],
+            "#database/*": ["database/*"],
+            "#services/*": ["services/*"],
+            "#enum/*": ["enum/*"],
+            "#models/*": ["models/*"],
+            "#exceptions/*": ["exceptions/*"],
+            "#interfaces/*": ["interfaces/*"],
+            "#controllers/*": ["controllers/*"],
+            "#mutations/*": ["mutations/*"],
+            "#middlewares/*": ["middlewares/*"],
+            "#docs/*": ["docs/*"]
+        }
+    },
+    "module": {
+        "type": "es6",
+        "resolveFully": true
+    },
+    "exclude": ["node_modules", "web/frontend"]
+}

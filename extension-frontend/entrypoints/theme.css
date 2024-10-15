@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.flatpickr-hidden-input {
+  @apply hidden;
+}
+.flatpickr-calendar .flatpickr-time {
+  display: none;
+}
+
+.flatpickr-day.flatpickr-disabled {
+  @apply !text-secondry/30;
+}
+span.flatpickr-day {
+  @apply focus-within:bg-primary focus-within:text-white hover:bg-primary hover:text-white focus:bg-primary focus:text-white;
+}
+.flatpickr-day.selected {
+  @apply border-0 !bg-primary hover:bg-primary;
+}
+
+.dayContainer .flatpickr-day {
+  @apply border-0 !important;
+}
+.dayContainer .flatpickr-day.nextMonthDay {
+  @apply text-[#404848];
+}
+
+.dayContainer .flatpickr-disabled.flatpickr-day.nextMonthDay {
+  @apply text-secondry/30;
+}
+.flatpickr-calendar,
+.flatpickr-rContainer,
+.flatpickr-days {
+  @apply !w-full;
+}
+.flatpickr-days {
+  @apply !border-l-0 !border-r-0;
+}
+.flatpickr-days .dayContainer {
+  @apply !w-full max-w-full;
+}
+.dayContainer .flatpickr-disabled {
+  @apply text-yellow-400;
+}
+.flatpickr-months {
+  @apply pb-2;
+}
+.flatpickr-current-month {
+  @apply space-x-4;
+}
+@layer base {
+  :root {
+    --primary: 249, 55%, 25%;
+    --secondry: 208, 13%, 42%;
+
+    --background: 0, 0%, 100%;
+    --foreground: 0, 0%, 0%;
+    --foreground-varient: 0, 0%, 60%;
+
+    --info: 190, 90%, 50%;
+    --success: 152, 69%, 31%;
+    --warning: 45, 100%, 51%;
+    --destructive: 0, 100%, 50%;
+  }
+}
+body {
+  @apply bg-background text-foreground;
+}
+
+.buttons-container .paypal-button-container div {
+  @apply hidden;
+}
+
+#duration {
+  @apply font-medium;
+}

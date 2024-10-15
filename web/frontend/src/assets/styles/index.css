@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ------------------------ GLOBAL-STYLES ------------------------ */
+
+/* body {
+    @apply bg-background font-body text-foreground font-normal antialiased transition-all duration-150 ease-out;
+} */

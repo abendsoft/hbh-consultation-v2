@@ -1,0 +1,11 @@
+dist
+node_modules
+build.contentlayer
+.env
+.eslintrc
+.eslintignore
+.prettierignore
+package.json
+nodemon.json
+tsconfig.json
+shopify.web.toml

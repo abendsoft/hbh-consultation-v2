@@ -1,0 +1,19 @@
+<div id="root">
+  {% liquid
+    render 'vite-tag' with 'theme.css', preload_stylesheet: true
+    render 'vite-tag' with 'theme.tsx'
+  %}
+</div>
+
+<script>
+  window.home = {{ request.path | json }}
+</script>
+
+{% schema %}
+{
+  "name": "Sample React Extension",
+
+  "target": "section",
+  "settings": []
+}
+{% endschema %}

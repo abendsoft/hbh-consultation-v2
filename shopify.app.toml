@@ -1,0 +1,40 @@
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
+
+client_id = "d27e63e7d96d9e0fd0c50f699c23eb1c"
+name = "hbh-consultation-booking"
+handle = "hbh-consultation-booking"
+application_url = "https://hbh-consultation.abendltd.com/"
+embedded = true
+
+[build]
+automatically_update_urls_on_dev = false
+dev_store_url = "muneeb-development.myshopify.com"
+
+[access_scopes]
+# Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
+scopes = "read_draft_orders,read_order_edits,read_orders,write_draft_orders,write_order_edits,write_orders,write_products"
+
+[auth]
+redirect_urls = [
+  "https://hbh-consultation.abendltd.com/auth/callback",
+  "https://hbh-consultation.abendltd.com/auth/shopify/callback",
+  "https://hbh-consultation.abendltd.com/api/auth/callback"
+]
+
+[webhooks]
+api_version = "2024-10"
+
+  [[webhooks.subscriptions]]
+  uri = "/api/webhooks/customers_data_request"
+  compliance_topics = [ "customers/data_request" ]
+
+  [[webhooks.subscriptions]]
+  uri = "/api/webhooks/customers_redact"
+  compliance_topics = [ "customers/redact" ]
+
+  [[webhooks.subscriptions]]
+  uri = "/api/webhooks/shop_redact"
+  compliance_topics = [ "shop/redact" ]
+
+[pos]
+embedded = false
