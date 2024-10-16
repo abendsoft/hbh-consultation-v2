@@ -54,7 +54,7 @@ try {
       swc . -d build --copy-files --log-watch-compilation --include-dotfiles --ignore node_modules,frontend,inject-json-assertion.cjs,.eslintignore,.eslintrc,.prettierignore,prettier.config.js,nodemon.json,shopify.web.toml,tsconfig.json,yarn.lock,.env.example,server/logs &&
       node inject-json-assertion.cjs &&
       cd frontend &&
-      SHOPIFY_API_KEY='${apiKey}' BACKEND_PORT=8790 FRONTEND_PORT=3320 HOST=hbh-consultation.abendltd.com yarn build &&
+      SHOPIFY_API_KEY='${apiKey}' BACKEND_PORT=8790 FRONTEND_PORT=3320 yarn build &&
       mkdir -p ../build/frontend/dist &&
       cp -r ./dist/* ../build/frontend/dist
     `,
