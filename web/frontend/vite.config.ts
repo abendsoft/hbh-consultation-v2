@@ -1,24 +1,19 @@
-import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import path, { dirname } from 'path'
 import { fileURLToPath } from 'url'
-import dotenv from 'dotenv'
-
-// Load the environment variables from the .env file
-dotenv.config()
+import { defineConfig } from 'vite'
 
 if (process.env.npm_lifecycle_event === 'build' && !process.env.CI && !process.env.SHOPIFY_API_KEY) {
-    throw new Error(`
-        The frontend build will not work without an API key.
-        Set the SHOPIFY_API_KEY environment variable when running the build command:
-        SHOPIFY_API_KEY=<your-api-key> npm run build
-    `)
+    throw new Error(
+        '\n\nThe frontend build will not work without an API key. Set the SHOPIFY_API_KEY environment variable when running the build command, for example:' +
+            '\n\nSHOPIFY_API_KEY=<your-api-key> npm run build\n',
+    )
 }
 
 process.env.VITE_SHOPIFY_API_KEY = process.env.SHOPIFY_API_KEY
 
 const proxyOptions = {
-    target: `http://127.0.0.1:${process.env.BACKEND_PORT || 8790}`, // Use default if not set
+    target: `http://127.0.0.1:${process.env.BACKEND_PORT}`,
     changeOrigin: false,
     secure: true,
     ws: false,
@@ -38,7 +33,7 @@ if (host === 'localhost') {
     hmrConfig = {
         protocol: 'wss',
         host: host,
-        port: Number(process.env.FRONTEND_PORT || 443),
+        port: Number(process.env.FRONTEND_PORT),
         clientPort: 443,
     }
 }
@@ -57,7 +52,7 @@ export default defineConfig({
     },
     server: {
         host: 'localhost',
-        port: Number(process.env.FRONTEND_PORT || 5718), // Use default if not set
+        port: Number(process.env.FRONTEND_PORT),
         hmr: hmrConfig,
         proxy: {
             '^/(\\?.*)?$': proxyOptions,
