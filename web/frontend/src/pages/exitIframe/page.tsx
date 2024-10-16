@@ -24,7 +24,7 @@ export default function ExitIframe() {
                 setShowWarning(true)
             }
         }
-    }, [search])
+    }, [app, search, setShowWarning])
 
     return showWarning ?
             <Page narrowWidth>
