@@ -13,7 +13,7 @@ if (process.env.npm_lifecycle_event === 'build' && !process.env.CI && !process.e
 process.env.VITE_SHOPIFY_API_KEY = process.env.SHOPIFY_API_KEY
 
 const proxyOptions = {
-    target: `http://127.0.0.1:8790`,
+    target: `http://127.0.0.1:${process.env.BACKEND_PORT}`,
     changeOrigin: false,
     secure: true,
     ws: false,
