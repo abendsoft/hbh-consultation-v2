@@ -16,6 +16,9 @@ export default function ExitIframe() {
             const params = new URLSearchParams(search)
             const redirectUri = params.get('redirectUri')
             const url = new URL(decodeURIComponent(redirectUri!))
+            console.log('params==>', params)
+            console.log('redirectUri==>', redirectUri)
+            console.log('url==>', url)
 
             if ([location.hostname, 'admin.shopify.com'].includes(url.hostname) || url.hostname.endsWith('.myshopify.com')) {
                 console.log('app bridge first')
