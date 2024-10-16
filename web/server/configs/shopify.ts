@@ -37,6 +37,7 @@ export const shopifyProdConfig = {
         scopes: Env.SCOPES,
         hostScheme: 'https' as 'https',
         hostName: Env.APP_URL,
+        isEmbeddedApp: true,
         apiVersion: LATEST_API_VERSION,
         restResources,
         future: {
@@ -57,3 +58,5 @@ export const shopifyProdConfig = {
         connectionPoolLimit: 20,
     }),
 }
+// hostScheme: (process.env.HOST?.split('://')[0] as 'http' | 'https')!,
+//     hostName: process.env.HOST?.replace(/https?:\/\//, '')!,
