@@ -1,4 +1,3 @@
-import { Redirect } from '@shopify/app-bridge/actions'
 import { useEffect, useState } from 'react'
 import { useAppBridge } from '@shopify/app-bridge-react'
 import { Banner, Layout, Page } from '@shopify/polaris'
@@ -12,21 +11,18 @@ export default function ExitIframe() {
     app.loading(true)
 
     useEffect(() => {
-        console.log('app==>', app)
         if (!!app && !!search) {
             const params = new URLSearchParams(search)
             const redirectUri = params.get('redirectUri')
             const url = new URL(decodeURIComponent(redirectUri!))
 
             if ([location.hostname, 'admin.shopify.com'].includes(url.hostname) || url.hostname.endsWith('.myshopify.com')) {
-                // window.open(url, '_top')
-                const redirect = Redirect.create(app)
-                redirect.dispatch(Redirect.Action.REMOTE, decodeURIComponent(redirectUri!))
+                window.open(url, '_top')
             } else {
                 setShowWarning(true)
             }
         }
-    }, [app, search, setShowWarning])
+    }, [search])
 
     return showWarning ?
             <Page narrowWidth>
