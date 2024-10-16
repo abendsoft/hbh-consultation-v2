@@ -1,3 +1,4 @@
+import { Redirect } from '@shopify/app-bridge/actions'
 import { useEffect, useState } from 'react'
 import { useAppBridge } from '@shopify/app-bridge-react'
 import { Banner, Layout, Page } from '@shopify/polaris'
@@ -18,7 +19,9 @@ export default function ExitIframe() {
             const url = new URL(decodeURIComponent(redirectUri!))
 
             if ([location.hostname, 'admin.shopify.com'].includes(url.hostname) || url.hostname.endsWith('.myshopify.com')) {
-                window.open(url, '_top')
+                // window.open(url, '_top')
+                const redirect = Redirect.create(app)
+                redirect.dispatch(Redirect.Action.REMOTE, decodeURIComponent(redirectUri!))
             } else {
                 setShowWarning(true)
             }
