@@ -1,5 +1,5 @@
 import "vite/modulepreload-polyfill";
-// import React from "react";
+import React from "react";
 import ReactDOM from "react-dom/client";
 import {
   type Customer,
@@ -20,7 +20,9 @@ declare global {
   }
 }
 
-ReactDOM.createRoot(document.getElementById("root")!).render(
+ReactDOM.createRoot(
+  document.getElementById("hbh-extension-frontend-root")!
+).render(
   <React.StrictMode>
     <ShopifyProvider>
       <App />
