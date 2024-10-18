@@ -6,7 +6,7 @@
     "scripts": {
         "start": "cross-env NODE_ENV=production node --experimental-json-modules --trace-warnings server/server.js",
         "dev": "cross-env NODE_ENV=development nodemon server/server.ts --ignore ./frontend",
-        "serve": "cross-env NODE_ENV=production node server/server.ts"
+        "serve": "cross-env NODE_ENV=production node --no-warnings --loader ts-node/esm ./server/server.ts"
     },
     "type": "module",
     "engines": {

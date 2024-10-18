@@ -9,7 +9,7 @@ import { Routes } from '#interfaces/routes.interface'
 import { logger } from '#utils/logger'
 import { getUniquePort } from '#utils/shared/functions'
 
-import apiDocs from '#docs/swagger.json' with { type: 'json' };
+// import apiDocs from '#docs/swagger.json' with { type: 'json' };
 
 const app = express()
 
@@ -17,9 +17,9 @@ const app = express()
     /***     If you are adding routes outside of the /api path, remember to also add a proxy rule for them in web/frontend/vite.config.js ***/
     app.use(express.json())
 
-    if (Env.NODE_ENV === 'development') {
-        app.use('/docs', swaggerUi.serve, swaggerUi.setup(apiDocs))
-    }
+    // if (Env.NODE_ENV === 'development') {
+    //     app.use('/docs', swaggerUi.serve, swaggerUi.setup(apiDocs))
+    // }
 
     const initializeErrorHandling = async () => {
         app.use(ErrorMiddleware)
@@ -40,7 +40,7 @@ const app = express()
     /******** ROUTES-START ********/
 
     /******** TESTING-ROUTES-FOR-SWAGGER ********/
-    await initializeRoutes({ routes: appRoutes })
+    // await initializeRoutes({ routes: appRoutes })
     /******** SHOPIFY-INITIALIZER ********/
     await initializeRoutes({ routes: preRoutes })
     /******** APP-ROUTES ********/
@@ -59,14 +59,14 @@ const app = express()
         logger.info(`============================================`)
     })
     if (Env.NODE_ENV === 'production') {
-        app.listen(Env.APP_URL_PORT, async () => {
+        app.listen(8081, async () => {
             logger.info(`============================================`)
             logger.info(`============================================`)
             logger.info(`🚀 ======= APP IS UP AND RUNNING ======== 🚀`)
             logger.info(`============================================`)
-            logger.info(`============ ENV PORT IS  ${Env.APP_URL_PORT} ============`)
+            logger.info(`============ ENV PORT IS  ${8081} ============`)
             logger.info(`============================================`)
-            logger.info(`🚀 APP == http://${Env.APP_URL}:${Env.APP_URL_PORT}/docs 🚀`)
+            logger.info(`🚀 APP == http://${Env.APP_URL}:${8081} 🚀`)
             logger.info(`============================================`)
             logger.info(`============================================`)
         })
