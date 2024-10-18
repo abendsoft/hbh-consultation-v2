@@ -1,0 +1,17 @@
+{
+  "extension-frontend/entrypoints/theme.css": {
+    "file": "theme-BXl5jxEI.css",
+    "src": "extension-frontend/entrypoints/theme.css",
+    "isEntry": true
+  },
+  "extension-frontend/entrypoints/theme.tsx": {
+    "file": "theme-c1ocwbOZ.js",
+    "name": "theme",
+    "src": "extension-frontend/entrypoints/theme.tsx",
+    "isEntry": true,
+    "css": [
+      "theme-BFusT_-6.css",
+      "theme-BXl5jxEI.css"
+    ]
+  }
+}

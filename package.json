@@ -15,7 +15,7 @@
     "dev": "run-p -sr vite:dev shopify:dev",
     "build": "run-s vite:build shopify:build",
     "extension": "shopify app generate extension",
-    "deploy": "run-s vite:build cleanup shopify:deploy",
+    "deploy": "shopify app deploy",
     "backend:build": "swc web -d dist --source-maps --copy-files",
     "docs:generate": "cd web && node --no-warnings --loader ts-node/esm ./server/configs/swagger.ts",
     "prettify": "cd web && npx prettier --write ./ && [ -d frontend ] && cd frontend && npx prettier --write ./",
@@ -28,8 +28,10 @@
   },
   "type": "module",
   "dependencies": {
+    "lucide-react": "^0.453.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-flatpickr": "^3.10.13",
     "vite-tsconfig-paths": "^5.0.1"
   },
   "author": "dev",
