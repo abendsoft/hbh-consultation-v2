@@ -6,14 +6,35 @@
 </div>
 
 <script>
-  window.home = {{ request.path | json }}
+  window.product = {
+    products: {{ block.settings.selected_products | json }}
+  };
+
+  window.shop =  {{ request.origin | json }}
+  window.routes =  {{ routes | json }}
+
+
+  window.customer = {
+    user : {
+      first_name: {{ customer.first_name | json }},
+      last_name: {{ customer.last_name | json }},
+      email: {{ customer.email | json }},
+      phone: {{ customer.phone | json }}
+    }
+  };
 </script>
 
 {% schema %}
 {
-  "name": "Sample React Extension",
-
+  "name": "consultation-section",
   "target": "section",
-  "settings": []
+  "settings": [
+    {
+      "type": "product_list",
+      "id": "selected_products",
+      "label": "Select Products",
+      "limit": 2
+    }
+  ]
 }
 {% endschema %}
