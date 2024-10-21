@@ -38,7 +38,7 @@ export const Checkout = () => {
               }}
             />
             {error && (
-              <small className="hbh-extension-text-inherit hbh-extension-text-danger">
+              <small className="hbh-extension-text-danger">
                 Note is required
               </small>
             )}
