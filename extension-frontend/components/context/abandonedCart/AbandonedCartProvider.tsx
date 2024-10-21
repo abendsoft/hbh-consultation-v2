@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
-// import { createRecordApi, getRecordsApi } from '@src/api/endpoints/index.'
 import { AbandonedCartContext } from "./AbandonedCartContext";
 import { initialData } from "./data";
 import { AbandonedCartProviderProps, Cart, slotsDataType } from "./types";
 import { filterSlots } from "../../innerComponents/dateAndTime/timeSlots";
+import { useFetch } from "extension-frontend/components/hooks";
 
 export const AbandonedCartProvider = ({
   children,
 }: AbandonedCartProviderProps) => {
+  const { getData } = useFetch();
   const [cart, setCart] = useState<Cart>(initialData);
   const [slotsData, setSlotsData] = useState<null | slotsDataType[]>(null);
   const { filteredHalfHourSlots, filteredHourSlots } = filterSlots(
@@ -35,11 +36,11 @@ export const AbandonedCartProvider = ({
   }, [timeInitialValue, slotsData]);
 
   const getRecord = async (endpoint: string) => {
-    // await getRecordsApi(endpoint).then((res: any) => {
-    //     if (res.code === 200) {
-    //         setSlotsData(res.result)
-    //     }
-    // })
+    await getData(endpoint).then((res: any) => {
+      if (res.code === 200) {
+        setSlotsData(res.result);
+      }
+    });
   };
 
   const createRecord = async (endpoint: string) => {

@@ -3,51 +3,51 @@
 @tailwind utilities;
 
 .flatpickr-hidden-input {
-  @apply hidden;
+  @apply hbh-extension-hidden;
 }
 .flatpickr-calendar .flatpickr-time {
   display: none;
 }
 
 .flatpickr-day.flatpickr-disabled {
-  @apply !text-secondry/30;
+  @apply !hbh-extension-text-secondry/30;
 }
 span.flatpickr-day {
-  @apply focus-within:bg-primary focus-within:text-white hover:bg-primary hover:text-white focus:bg-primary focus:text-white;
+  @apply focus-within:hbh-extension-bg-primary focus-within:hbh-extension-text-white hover:hbh-extension-bg-primary hover:hbh-extension-text-white focus:hbh-extension-bg-primary focus:hbh-extension-text-white;
 }
 .flatpickr-day.selected {
-  @apply border-0 !bg-primary hover:bg-primary;
+  @apply hbh-extension-border-0 !hbh-extension-bg-primary hover:hbh-extension-bg-primary;
 }
 
 .dayContainer .flatpickr-day {
-  @apply border-0 !important;
+  @apply hbh-extension-border-0 !important;
 }
 .dayContainer .flatpickr-day.nextMonthDay {
-  @apply text-[#404848];
+  @apply hbh-extension-text-[#404848];
 }
 
 .dayContainer .flatpickr-disabled.flatpickr-day.nextMonthDay {
-  @apply text-secondry/30;
+  @apply hbh-extension-text-secondry/30;
 }
 .flatpickr-calendar,
 .flatpickr-rContainer,
 .flatpickr-days {
-  @apply !w-full;
+  @apply !hbh-extension-w-full;
 }
 .flatpickr-days {
-  @apply !border-l-0 !border-r-0;
+  @apply !hbh-extension-border-l-0 !hbh-extension-border-r-0;
 }
 .flatpickr-days .dayContainer {
-  @apply !w-full max-w-full;
+  @apply !hbh-extension-w-full hbh-extension-max-w-full;
 }
 .dayContainer .flatpickr-disabled {
-  @apply text-yellow-400;
+  @apply hbh-extension-text-yellow-400;
 }
 .flatpickr-months {
-  @apply pb-2;
+  @apply hbh-extension-pb-2;
 }
 .flatpickr-current-month {
-  @apply space-x-4;
+  @apply hbh-extension-space-x-4;
 }
 @layer base {
   :root {
@@ -65,13 +65,13 @@ span.flatpickr-day {
   }
 }
 body {
-  @apply bg-background text-foreground;
+  @apply hbh-extension-bg-background hbh-extension-text-foreground;
 }
 
 .buttons-container .paypal-button-container div {
-  @apply hidden;
+  @apply hbh-extension-hidden;
 }
 
 #duration {
-  @apply font-medium;
+  @apply hbh-extension-font-medium;
 }

@@ -48,96 +48,98 @@ export const Button: React.FC<ButtonProps> = ({
 
   const btnSize =
     size === "xs"
-      ? "px-3 py-2"
+      ? "hbh-extension-px-3 hbh-extension-py-2"
       : size === "sm"
-        ? "px-3 py-2"
+        ? "hbh-extension-px-3 hbh-extension-py-2"
         : size === "md"
-          ? "px-5 py-2.5"
+          ? "hbh-extension-px-5 hbh-extension-py-2.5"
           : size === "lg"
-            ? "px-5 py-3"
+            ? "hbh-extension-px-5 hbh-extension-py-3"
             : size === "xl"
-              ? "px-6 py-3.5"
+              ? "hbh-extension-px-6 hbh-extension-py-3.5"
               : null;
 
   const rippleClr = rippleColor
     ? rippleColor
     : color === "secondary"
-      ? "bg-secondary-200"
+      ? "hbh-extension-bg-secondary-200"
       : color === "danger"
-        ? "bg-destructive"
+        ? "hbh-extension-bg-destructive"
         : color === "muted"
-          ? "bg-muted"
+          ? "hbh-extension-bg-muted"
           : color === "success"
-            ? "bg-success"
+            ? "hbh-extension-bg-success"
             : color === "warning"
-              ? "bg-warning"
-              : "bg-primary/75";
+              ? "hbh-extension-bg-warning"
+              : "hbh-extension-bg-primary/75";
 
   const btnColor =
     color === "primary" && variant === "default"
-      ? "bg-muted/20 text-foreground"
+      ? "hbh-extension-bg-muted/20 hbh-extension-text-foreground"
       : color === "primary" && variant === "solid"
-        ? "bg-primary text-white"
+        ? "hbh-extension-bg-primary hbh-extension-text-white"
         : color === "primary" && variant === "outline"
-          ? "border border-primary text-primary hover:bg-primary hover:text-white"
+          ? "hbh-extension-border hbh-extension-border-primary hbh-extension-text-primary hover:hbh-extension-bg-primary hover:hbh-extension-text-white"
           : color === "secondary" && variant === "solid"
-            ? "bg-secondary text-black"
+            ? "hbh-extension-bg-secondary hbh-extension-text-black"
             : color === "secondary" && variant === "outline"
-              ? "border border-secondary text-secondary hover:bg-secondary hover:text-white"
+              ? "hbh-extension-border hbh-extension-border-secondary hbh-extension-text-secondary hover:hbh-extension-bg-secondary hover:hbh-extension-text-white"
               : color === "danger" && variant === "solid"
-                ? "bg-destructive text-white"
+                ? "hbh-extension-bg-destructive hbh-extension-text-white"
                 : color === "danger" && variant === "outline"
-                  ? "border border-destructive text-destructive hover:bg-destructive hover:text-white"
+                  ? "hbh-extension-border hbh-extension-border-destructive hbh-extension-text-destructive hover:hbh-extension-bg-destructive hover:hbh-extension-text-white"
                   : color === "muted" && variant === "solid"
-                    ? "bg-muted text-muted-foreground"
+                    ? "hbh-extension-bg-muted hbh-extension-text-muted-foreground"
                     : color === "muted" && variant === "outline"
-                      ? "border border-muted-foreground text-muted-foreground hover:bg-muted hover:text-muted-foreground"
+                      ? "hbh-extension-border hbh-extension-border-muted-foreground hbh-extension-text-muted-foreground hover:hbh-extension-bg-muted hover:hbh-extension-text-muted-foreground"
                       : color === "success" && variant === "solid"
-                        ? "bg-success text-white"
+                        ? "hbh-extension-bg-success hbh-extension-text-white"
                         : color === "success" && variant === "outline"
-                          ? "border border-success text-success hover:bg-success hover:text-white"
+                          ? "hbh-extension-border hbh-extension-border-success hbh-extension-text-success hover:hbh-extension-bg-success hover:hbh-extension-text-white"
                           : color === "warning" && variant === "solid"
-                            ? "bg-warning text-white"
+                            ? "hbh-extension-bg-warning hbh-extension-text-white"
                             : color === "warning" && variant === "outline"
-                              ? "border border-warning text-warning hover:bg-warning hover:text-white"
+                              ? "hbh-extension-border hbh-extension-border-warning hbh-extension-text-warning hover:hbh-extension-bg-warning hover:hbh-extension-text-white"
                               : color === "info" && variant === "solid"
-                                ? "bg-info text-white"
+                                ? "hbh-extension-bg-info hbh-extension-text-white"
                                 : color === "info" && variant === "outline"
-                                  ? "border border-info text-info hover:bg-info hover:text-white"
+                                  ? "hbh-extension-border hbh-extension-border-info hbh-extension-text-info hover:hbh-extension-bg-info hover:hbh-extension-text-white"
                                   : color === "default" && variant === "solid"
-                                    ? "bg-muted text-foreground"
+                                    ? "hbh-extension-bg-muted hbh-extension-text-foreground"
                                     : color === "default" &&
                                         variant === "outline"
-                                      ? "border border-foreground text-foreground hover:bg-muted hover:text-foreground"
+                                      ? "hbh-extension-border hbh-extension-border-foreground hbh-extension-text-foreground hover:hbh-extension-bg-muted hover:hbh-extension-text-foreground"
                                       : null;
 
   const btnRounded =
     rounded === "xs"
-      ? "rounded"
+      ? "hbh-extension-rounded"
       : rounded === "sm"
-        ? "rounded-sm"
+        ? "hbh-extension-rounded-sm"
         : rounded === "md"
-          ? "rounded-md"
+          ? "hbh-extension-rounded-md"
           : rounded === "lg"
-            ? "rounded-lg"
+            ? "hbh-extension-rounded-lg"
             : rounded === "xl"
-              ? "rounded-xl"
+              ? "hbh-extension-rounded-xl"
               : rounded === "2xl"
-                ? "rounded-2xl"
+                ? "hbh-extension-rounded-2xl"
                 : rounded === "3xl"
-                  ? "rounded-3xl"
+                  ? "hbh-extension-rounded-3xl"
                   : rounded === "none"
-                    ? "rounded-none"
+                    ? "hbh-extension-rounded-none"
                     : rounded === "full"
-                      ? "rounded-full"
+                      ? "hbh-extension-rounded-full"
                       : null;
 
-  const btnShadow = shadow ? "shadow-md shadow-primary-foreground" : "";
+  const btnShadow = shadow
+    ? "hbh-extension-shadow-md hbh-extension-shadow-primary-foreground"
+    : "";
 
-  const width = fullWidth ? "w-full" : "";
+  const width = fullWidth ? "hbh-extension-w-full" : "";
 
   const btnDisabled = disabled
-    ? "cursor-not-allowed disabled:opacity-50 disabled:shadow-none"
+    ? "hbh-extension-cursor-not-allowed disabled:hbh-extension-opacity-50 disabled:hbh-extension-shadow-none"
     : "";
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -157,7 +159,7 @@ export const Button: React.FC<ButtonProps> = ({
       disabled={disabled}
       onClick={handleClick}
       {...rest}
-      className={`relative min-w-max items-center gap-1 overflow-hidden text-inherit text-center font-medium tracking-wider transition-all duration-200 ease-out hover:bg-opacity-85 ${btnRounded} ${btnShadow} ${btnSize} ${btnColor} ${width} ${btnDisabled}`}
+      className={`hbh-extension-relative hbh-extension-min-w-max hbh-extension-items-center hbh-extension-gap-1 hbh-extension-overflow-hidden hbh-extension-text-center hbh-extension-font-medium hbh-extension-tracking-wider hbh-extension-transition-all hbh-extension-duration-200 hbh-extension-ease-out hover:hbh-extension-bg-opacity-85 ${btnRounded} ${btnShadow} ${btnSize} ${btnColor} ${width} ${btnDisabled}`}
     >
       {!after && icon && <span>{icon}</span>}
       {children}

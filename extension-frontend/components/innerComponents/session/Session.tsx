@@ -1,12 +1,11 @@
 import { useState } from "react";
 import { Header } from "../header/Header";
-// import { sessionData } from "./data";
-import { useShopify } from "extension-frontend/components/hooks";
+import { useAbbandoned, useShopify } from "extension-frontend/components/hooks";
 
 export const Session = () => {
   const { products, order, setOrder } = useShopify();
 
-  // const { setCart, cart } = useAbbandoned();
+  const { setCart, cart } = useAbbandoned();
   const [isVisible, setIsVisible] = useState(true);
 
   const handleHideData = () => {
@@ -14,7 +13,7 @@ export const Session = () => {
   };
 
   return (
-    <div className="overflow-hidden transition-all duration-200 ease-out">
+    <div className="hbh-extension-overflow-hidden hbh-extension-transition-all hbh-extension-duration-200 hbh-extension-ease-out">
       <Header
         step={1}
         heading="Choose the Consultation Duration with Matthew Jacobs"
@@ -22,26 +21,36 @@ export const Session = () => {
         isVisible={isVisible}
       />
       <div
-        className={`space-y-6 pt-5 transition-transform duration-200 ease-out md:pb-2 md:pt-7 ${!isVisible ? "pointer-events-none invisible absolute -z-50 -translate-y-full" : "pointer-events-auto visible relative z-0 translate-y-0"}`}
+        className={`hbh-extension-space-y-6 hbh-extension-pt-5 hbh-extension-transition-transform hbh-extension-duration-200 hbh-extension-ease-out md:hbh-extension-pb-2 md:hbh-extension-pt-7 ${!isVisible ? "hbh-extension-pointer-events-none hbh-extension-invisible hbh-extension-absolute -hbh-extension-z-50 -hbh-extension-translate-y-full" : "hbh-extension-pointer-events-auto hbh-extension-visible hbh-extension-relative hbh-extension-z-0 hbh-extension-translate-y-0"}`}
       >
         {products.map((product) => (
           <div
             key={product.id}
             onClick={() => {
               setOrder({ ...order, product: product.variants?.[0] });
+              setCart((prev: any) => ({
+                ...prev,
+                consultation: {
+                  ...prev.consultation,
+                  meeting_duration: product.title,
+                  price: `${product.price / 100}.00`,
+                },
+              }));
             }}
-            className={`cursor-pointer select-none rounded-lg border border-primary px-4 py-2.5 font-semibold text-secondry shadow-md hover:border-opacity-50 transition-colors ease-out duration-200 
-              ${order.product?.id === product.variants?.[0].id ? "border-opacity-100" : "border-opacity-30"}
+            className={`hbh-extension-cursor-pointer hbh-extension-select-none hbh-extension-rounded-lg hbh-extension-border hbh-extension-border-primary hbh-extension-px-4 hbh-extension-py-2.5 hbh-extension-font-semibold hbh-extension-text-secondry hbh-extension-shadow-md hover:hbh-extension-border-opacity-50 hbh-extension-transition-colors hbh-extension-ease-out hbh-extension-duration-200 
+              ${order.product?.id === product.variants?.[0].id ? "hbh-extension-border-opacity-100" : "hbh-extension-border-opacity-30"}
               `}
           >
-            <div className="flex justify-between max-md:flex-col max-md:gap-3">
-              <p className="flex-1 text-inherit">{product.title}</p>
-              <div className="flex flex-1 justify-between">
+            <div className="hbh-extension-flex hbh-extension-justify-between max-md:hbh-extension-flex-col max-md:hbh-extension-gap-3">
+              <p className="hbh-extension-flex-1 hbh-extension-text-inherit">
+                {product.title}
+              </p>
+              <div className="hbh-extension-flex hbh-extension-flex-1 hbh-extension-justify-between">
                 <p>${`${product.price / 100}.00`}</p>
                 <input
                   readOnly
                   type="radio"
-                  className="accent-primary"
+                  className="hbh-extension-accent-primary"
                   checked={order.product?.id === product.variants?.[0].id}
                 />
               </div>

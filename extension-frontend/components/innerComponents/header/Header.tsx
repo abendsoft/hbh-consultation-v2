@@ -18,14 +18,17 @@ export const Header: React.FC<headerPropsType> = ({
   return (
     <div
       onClick={() => handleHideData()}
-      className="relative flex w-full cursor-pointer select-none items-center overflow-hidden rounded-lg bg-primary"
+      className="hbh-extension-relative hbh-extension-flex hbh-extension-w-full hbh-extension-cursor-pointer hbh-extension-select-none hbh-extension-items-center hbh-extension-overflow-hidden hbh-extension-rounded-lg hbh-extension-bg-primary"
     >
-      <h4 className="h4 w-9 border-r border-white bg-primary py-2 text-center font-semibold text-white">
+      <h4 className="hbh-extension-h4 hbh-extension-w-9 hbh-extension-border-r hbh-extension-border-white hbh-extension-bg-primary hbh-extension-py-2 hbh-extension-text-center hbh-extension-font-semibold hbh-extension-text-white">
         {step}
       </h4>
-      <div className="flex flex-1 items-center justify-between bg-primary py-2 pl-2 text-white">
-        <h2 className="text-inherit font-semibold text-white"> {heading}</h2>
-        <span className="px-4">
+      <div className="hbh-extension-flex hbh-extension-flex-1 hbh-extension-items-center hbh-extension-justify-between hbh-extension-bg-primary hbh-extension-py-2 hbh-extension-pl-2 hbh-extension-text-white">
+        <h2 className="hbh-extension-text-inherit hbh-extension-font-semibold hbh-extension-text-white">
+          {" "}
+          {heading}
+        </h2>
+        <span className="hbh-extension-px-4">
           <IconNode size={17} />
         </span>
       </div>

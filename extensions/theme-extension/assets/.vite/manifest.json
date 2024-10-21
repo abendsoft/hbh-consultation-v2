@@ -1,17 +1,17 @@
 {
   "extension-frontend/entrypoints/theme.css": {
-    "file": "theme-BXl5jxEI.css",
+    "file": "theme-D7Gxr31a.css",
     "src": "extension-frontend/entrypoints/theme.css",
     "isEntry": true
   },
   "extension-frontend/entrypoints/theme.tsx": {
-    "file": "theme-CUCQQKI5.js",
+    "file": "theme-CMdVexGZ.js",
     "name": "theme",
     "src": "extension-frontend/entrypoints/theme.tsx",
     "isEntry": true,
     "css": [
       "theme-BFusT_-6.css",
-      "theme-BXl5jxEI.css"
+      "theme-D7Gxr31a.css"
     ]
   }
 }

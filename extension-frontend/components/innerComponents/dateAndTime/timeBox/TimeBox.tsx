@@ -8,27 +8,33 @@ interface TimeBoxPropsType {
   box: timePropsType;
   onChange: ({ time }: { time: string }) => void;
   checked?: boolean;
+  disabled: boolean;
 }
 export const TimeBox: React.FC<TimeBoxPropsType> = ({
   onChange,
   box,
   checked,
+  disabled,
 }) => {
   return (
     <label
       htmlFor={box.Time}
-      className={`flex max-w-[150px] px-2 py-1.5 w-full cursor-pointer items-center justify-center gap-2 border border-primary shadow-md hover:border-opacity-50 transition-colors ease-out duration-200 ${checked ? "border-opacity-100" : "border-opacity-30"} rounded-lg`}
+      className={`hbh-extension-flex hbh-extension-max-w-[140px] hbh-extension-px-2 hbh-extension-py-1.5 hbh-extension-w-full hbh-extension-cursor-pointer hbh-extension-items-center hbh-extension-justify-center hbh-extension-gap-2 hbh-extension-border hbh-extension-border-primary hbh-extension-shadow-md hover:hbh-extension-border-opacity-50 hbh-extension-transition-colors hbh-extension-ease-out hbh-extension-duration-200 hbh-extension-rounded-lg
+    ${checked ? "hbh-extension-border-opacity-100" : "hbh-extension-border-opacity-30"}
+    peer-disabled:hbh-extension-cursor-not-allowed peer-disabled:hbh-extension-border-opacity-20 peer-disabled:hover:hbh-extension-border-opacity-20 `}
     >
       <input
         type="radio"
         name="radio"
+        disabled={disabled}
         id={box.Time}
         checked={checked}
-        className="accent-primary"
+        className="hbh-extension-accent-primary hbh-extension-peer disabled:hbh-extension-cursor-not-allowed"
         onChange={() => onChange({ time: box.Time })}
       />
-
-      <small className="mt-1 text-inherit text-secondry">{box.Time} </small>
+      <small className="hbh-extension-mt-1 hbh-extension-text-inherit hbh-extension-text-secondry peer-disabled:hbh-extension-cursor-not-allowed peer-disabled:hbh-extension-opacity-20">
+        {box.Time}
+      </small>
     </label>
   );
 };

@@ -64,6 +64,7 @@ export const ShopifyProvider = ({ children }: ShopifyProviderProps) => {
           }
         })
         .catch((err) => console.log("error==>", err));
+      console.log("res==>", res);
     }
   };
 

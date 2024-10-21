@@ -24,5 +24,6 @@ export default {
       },
     },
   },
+  prefix: "hbh-extension-",
   plugins: [],
 } satisfies Config;

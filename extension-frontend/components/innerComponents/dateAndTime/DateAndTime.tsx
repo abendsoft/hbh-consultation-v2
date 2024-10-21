@@ -10,41 +10,18 @@ import { Session } from "extension-frontend/components/context";
 
 export const DateAndTime = () => {
   const { order, setSession } = useShopify();
-  const { cart, setCart, getRecord, slotsData } = useAbbandoned();
+  const { cart, getRecord, slotsData } = useAbbandoned();
   const { timeData } = filterSlots(cart.consultation, slotsData);
   const [isVisible, setIsVisible] = useState(true);
 
-  // useEffect(() => {
-  //   getRecord("consultation");
-  // }, []);
+  useEffect(() => {
+    getRecord("consultation");
+  }, []);
 
+  console.log("cart==>", cart);
   const handleHideData = () => {
     setIsVisible(!isVisible);
   };
-
-  // const handleUpdateTime = (Time: string) => {
-  //   setCart((prev) => ({
-  //     ...prev,
-  //     consultation: {
-  //       ...prev.consultation,
-  //       time: Time,
-  //     },
-  //   }));
-  // };
-
-  // const handleDateChange = ([selectedDate]: Date[]) => {
-  //   setSession({
-  //     ...order.session,
-  //     attributes: { ...order.session?.attributes, date: selectedDate },
-  //   });
-  //   setCart((prev) => ({
-  //     ...prev,
-  //     consultation: {
-  //       ...prev.consultation,
-  //       date: selectedDate.toLocaleDateString("en-CA"),
-  //     },
-  //   }));
-  // };
 
   const handleDateAndTime = ({
     date,
@@ -71,7 +48,7 @@ export const DateAndTime = () => {
   };
 
   return (
-    <div className="overflow-hidden transition-all duration-200 ease-out">
+    <div className="hbh-extension-overflow-hidden hbh-extension-transition-all hbh-extension-duration-200 hbh-extension-ease-out">
       <Header
         heading="Select the Date and Time"
         step={2}
@@ -80,36 +57,40 @@ export const DateAndTime = () => {
       />
 
       <div
-        className={`flex flex-col gap-3 pt-5 md:pb-2 md:pt-7 ${!isVisible ? "pointer-events-none invisible absolute -z-50 -translate-y-full" : "pointer-events-auto visible relative z-0 translate-y-0"}`}
+        className={`hbh-extension-flex hbh-extension-flex-col hbh-extension-gap-3 hbh-extension-pt-5 md:hbh-extension-pb-2 md:hbh-extension-pt-7 ${!isVisible ? "hbh-extension-pointer-events-none hbh-extension-invisible absolute -hbh-extension-z-50 -hbh-extension-translate-y-full" : "hbh-extension-pointer-events-auto hbh-extension-visible hbh-extension-relative hbh-extension-z-0 hbh-extension-translate-y-0"}`}
       >
-        <p className="text-inherit text-secondry">
+        <p className="hbh-extension-text-inherit hbh-extension-text-secondry">
           <span>Below you can find a list of available time slots for </span>
-          <span className="px-1 font-bold text-primary">
+          <span className="hbh-extension-px-1 hbh-extension-font-bold hbh-extension-text-primary">
             {order.product?.name}
           </span>{" "}
           with
-          <span className="pl-1 font-bold text-primary"> Matthew Jacobs</span>.
-          Click on a time slot to proceed with booking.
+          <span className="hbh-extension-pl-1 hbh-extension-font-bold hbh-extension-text-primary">
+            {" "}
+            Matthew Jacobs
+          </span>
+          . Click on a time slot to proceed with booking.
         </p>
-        <div className="space-y-8">
+        <div className="hbh-extension-space-y-8">
           {isVisible && (
             <h3 className="calender">
               <Flatpickr
                 data-enable-time
                 options={options}
-                onChange={([date]) => {
+                onChange={([date]: any) => {
                   handleDateAndTime({ date: date });
                 }}
                 value={order.session?.attributes.date}
-                className="flatpickr-hidden-input w-full text-inherit"
+                className="flatpickr-hidden-input hbh-extension-w-full hbh-extension-text-inherit"
               />
             </h3>
           )}
-          <div className="flex flex-wrap justify-items-start gap-5">
+          <div className="hbh-extension-flex hbh-extension-flex-wrap hbh-extension-justify-items-start hbh-extension-gap-5">
             {timeData.length > 0 &&
               timeData.map((box) => (
                 <TimeBox
                   key={box.id}
+                  disabled={cart.consultation.time === box.Time}
                   box={box}
                   onChange={handleDateAndTime}
                   checked={order.session.attributes.time === box.Time}
