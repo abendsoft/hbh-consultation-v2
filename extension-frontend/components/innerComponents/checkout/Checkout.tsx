@@ -50,7 +50,7 @@ export const Checkout = () => {
                 if (session.note.trim().length === 0) {
                   setError(true);
                 } else {
-                  handleCheckout;
+                  handleCheckout();
                 }
               }}
             >

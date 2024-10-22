@@ -14,11 +14,11 @@ export const DateAndTime = () => {
   const { timeData } = filterSlots(cart.consultation, slotsData);
   const [isVisible, setIsVisible] = useState(true);
 
+  console.log("timeData==>", timeData);
   useEffect(() => {
     getRecord("consultation");
   }, []);
 
-  console.log("cart==>", cart);
   const handleHideData = () => {
     setIsVisible(!isVisible);
   };
@@ -46,6 +46,8 @@ export const DateAndTime = () => {
       }));
     }
   };
+
+  console.log("cart==>", cart);
 
   return (
     <div className="hbh-extension-overflow-hidden hbh-extension-transition-all hbh-extension-duration-200 hbh-extension-ease-out">
@@ -90,7 +92,6 @@ export const DateAndTime = () => {
               timeData.map((box) => (
                 <TimeBox
                   key={box.id}
-                  disabled={cart.consultation.time === box.Time}
                   box={box}
                   onChange={handleDateAndTime}
                   checked={order.session.attributes.time === box.Time}

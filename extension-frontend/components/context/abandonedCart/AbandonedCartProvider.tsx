@@ -37,8 +37,9 @@ export const AbandonedCartProvider = ({
 
   const getRecord = async (endpoint: string) => {
     await getData(endpoint).then((res: any) => {
-      if (res.code === 200) {
-        setSlotsData(res.result);
+      console.log("res==>", res);
+      if (res.data.code === 200) {
+        setSlotsData(res?.data?.result);
       }
     });
   };

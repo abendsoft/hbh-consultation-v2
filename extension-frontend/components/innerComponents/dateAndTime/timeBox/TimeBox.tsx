@@ -8,13 +8,11 @@ interface TimeBoxPropsType {
   box: timePropsType;
   onChange: ({ time }: { time: string }) => void;
   checked?: boolean;
-  disabled: boolean;
 }
 export const TimeBox: React.FC<TimeBoxPropsType> = ({
   onChange,
   box,
   checked,
-  disabled,
 }) => {
   return (
     <label
@@ -26,7 +24,6 @@ export const TimeBox: React.FC<TimeBoxPropsType> = ({
       <input
         type="radio"
         name="radio"
-        disabled={disabled}
         id={box.Time}
         checked={checked}
         className="hbh-extension-accent-primary hbh-extension-peer disabled:hbh-extension-cursor-not-allowed"
