@@ -28,7 +28,7 @@ export const Checkout = () => {
             <Textarea
               required
               name="note"
-              label="Health concern"
+              label="Health concern *"
               placeholder="Type here..."
               onChange={(e) => {
                 setSession((prev) => ({

@@ -4,9 +4,9 @@
 {% endcomment %}
 {% assign path = vite-tag | replace: '@@/', '../../resources/js/' | replace: '@modules/', '../../frontend/modules/' | replace: '~/', '../' | replace: '@/', '../' %}
 {% if path == "/extension-frontend/entrypoints/theme.css" or path == "theme.css" %}
-  {{ 'theme-D7Gxr31a.css' | asset_url | split: '?' | first | stylesheet_tag: preload: preload_stylesheet }}
+  {{ 'theme-BPii2JgF.css' | asset_url | split: '?' | first | stylesheet_tag: preload: preload_stylesheet }}
 {% elsif path == "/extension-frontend/entrypoints/theme.tsx" or path == "theme.tsx" %}
-  <script src="{{ 'theme-BGvSRVXL.js' | asset_url | split: '?' | first }}" type="module" crossorigin="anonymous"></script>
-  {{ 'theme-BFusT_-6.css' | asset_url | split: '?' | first | stylesheet_tag: preload: preload_stylesheet }}
-  {{ 'theme-D7Gxr31a.css' | asset_url | split: '?' | first | stylesheet_tag: preload: preload_stylesheet }}
+  <script src="{{ 'theme-cItrIhKs.js' | asset_url | split: '?' | first }}" type="module" crossorigin="anonymous"></script>
+  {{ 'theme-D1FkJxoD.css' | asset_url | split: '?' | first | stylesheet_tag: preload: preload_stylesheet }}
+  {{ 'theme-BPii2JgF.css' | asset_url | split: '?' | first | stylesheet_tag: preload: preload_stylesheet }}
 {% endif %}

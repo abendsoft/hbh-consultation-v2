@@ -1,17 +1,19 @@
 import { ChevronDown, ChevronUp } from "lucide-react";
 
 interface headerPropsType {
-  heading?: string;
   step?: number;
-  handleHideData: () => void;
+  heading?: string;
+  required: boolean;
   isVisible: boolean;
+  handleHideData: () => void;
 }
 
 export const Header: React.FC<headerPropsType> = ({
-  heading,
   step,
-  handleHideData,
+  heading,
   isVisible,
+  handleHideData,
+  required = false,
 }) => {
   const IconNode = isVisible ? ChevronUp : ChevronDown;
 
@@ -25,8 +27,12 @@ export const Header: React.FC<headerPropsType> = ({
       </h4>
       <div className="hbh-extension-flex hbh-extension-flex-1 hbh-extension-items-center hbh-extension-justify-between hbh-extension-bg-primary hbh-extension-py-2 hbh-extension-pl-2 hbh-extension-text-white">
         <h2 className="hbh-extension-text-inherit hbh-extension-font-semibold hbh-extension-text-white">
-          {" "}
           {heading}
+          {required && (
+            <span className="hbh-extension-ml-1 hbh-extension-text-red-600">
+              *
+            </span>
+          )}
         </h2>
         <span className="hbh-extension-px-4">
           <IconNode size={17} />

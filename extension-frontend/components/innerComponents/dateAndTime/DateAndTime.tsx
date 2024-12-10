@@ -14,7 +14,6 @@ export const DateAndTime = () => {
   const { timeData } = filterSlots(cart.consultation, slotsData);
   const [isVisible, setIsVisible] = useState(true);
 
-  console.log("timeData==>", timeData);
   useEffect(() => {
     getRecord("consultation");
   }, []);
@@ -47,15 +46,14 @@ export const DateAndTime = () => {
     }
   };
 
-  console.log("cart==>", cart);
-
   return (
     <div className="hbh-extension-overflow-hidden hbh-extension-transition-all hbh-extension-duration-200 hbh-extension-ease-out">
       <Header
-        heading="Select the Date and Time"
         step={2}
-        handleHideData={handleHideData}
+        required
         isVisible={isVisible}
+        handleHideData={handleHideData}
+        heading="Select the Date and Time"
       />
 
       <div

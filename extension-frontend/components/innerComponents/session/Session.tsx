@@ -16,9 +16,10 @@ export const Session = () => {
     <div className="hbh-extension-overflow-hidden hbh-extension-transition-all hbh-extension-duration-200 hbh-extension-ease-out">
       <Header
         step={1}
-        heading="Choose the Consultation Duration with Matthew Jacobs"
-        handleHideData={handleHideData}
+        required
         isVisible={isVisible}
+        handleHideData={handleHideData}
+        heading="Choose the Consultation Duration with Matthew Jacobs "
       />
       <div
         className={`hbh-extension-space-y-6 hbh-extension-pt-5 hbh-extension-transition-transform hbh-extension-duration-200 hbh-extension-ease-out md:hbh-extension-pb-2 md:hbh-extension-pt-7 ${!isVisible ? "hbh-extension-pointer-events-none hbh-extension-invisible hbh-extension-absolute -hbh-extension-z-50 -hbh-extension-translate-y-full" : "hbh-extension-pointer-events-auto hbh-extension-visible hbh-extension-relative hbh-extension-z-0 hbh-extension-translate-y-0"}`}

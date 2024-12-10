@@ -1,17 +1,16 @@
-// For format details, see https://aka.ms/devcontainer.json.
 {
   "name": "Node Shopify App",
   "build": {
-    "context": "..", // Points one directory above to include everything in the build.
-    "dockerfile": "../Dockerfile" // Adjust if Dockerfile is not named 'Dockerfile'.
+    "context": "..",
+    "dockerfile": "../Dockerfile"
   },
-  "forwardPorts": [8081], // Map ports to your local machine.
-  "postCreateCommand": "yarn install", // Automatically install dependencies.
+  "forwardPorts": [8081],
+  "postCreateCommand": "yarn install",
   "customizations": {
     "vscode": {
       "settings": {},
-      "extensions": ["dbaeumer.vscode-eslint", "esbenp.prettier-vscode"] // Useful extensions.
+      "extensions": ["dbaeumer.vscode-eslint", "esbenp.prettier-vscode"]
     }
   },
-  "remoteUser": "root" // Use the 'root' user inside the container.
+  "remoteUser": "root"
 }

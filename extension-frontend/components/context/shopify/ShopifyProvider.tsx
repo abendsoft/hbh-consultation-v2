@@ -30,10 +30,7 @@ export const ShopifyProvider = ({ children }: ShopifyProviderProps) => {
       setOrder({ ...order, user: user });
     }
     setOrder((prev) => ({ ...prev, session: session }));
-    if (!user.first_name) {
-      window.location.href = "/account";
-    }
-  }, [products, user, session]);
+  }, [products, session]);
 
   const handleCheckout = async () => {
     const url = `${shop}${routes.cart_add_url}`;

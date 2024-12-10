@@ -2,7 +2,7 @@ import { AbandonedCartProvider } from "./context";
 import { Checkout, DateAndTime, Session, UserInfo } from "./innerComponents";
 import "flatpickr/dist/themes/airbnb.css";
 
-export const App = ({}) => {
+export const App = () => {
   return (
     <AbandonedCartProvider>
       <div className="hbh-extension-relative hbh-extension-mx-auto hbh-extension-w-4/5 hbh-extension-pt-10 max-md:hbh-extension-pb-10">
