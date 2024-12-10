@@ -17,6 +17,7 @@
     "extension": "shopify app generate extension",
     "deploy": "shopify app deploy",
     "backend:build": "swc web -d dist --source-maps --copy-files",
+    "build-css": "tailwindcss  -i ./extension-frontend/entrypoints/theme.css -o ./dist/styles.css",
     "docs:generate": "cd web && node --no-warnings --loader ts-node/esm ./server/configs/swagger.ts",
     "prettify": "cd web && npx prettier --write ./ && [ -d frontend ] && cd frontend && npx prettier --write ./",
     "db:seed": "cd web && node --no-warnings --loader ts-node/esm node_modules/knex/bin/cli.js seed:run --knexfile=knexfile.ts --verbose",

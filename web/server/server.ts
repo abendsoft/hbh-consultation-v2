@@ -59,7 +59,7 @@ const app = express()
         logger.info(`|──────────────────────────────────────────────|`)
     })
     if (Env.NODE_ENV === 'production') {
-        app.listen(8082, async () => {
+        app.listen(8081, async () => {
             logger.info(`|                                              |`)
             logger.info(`|            APP IS UP AND RUNNING             |`)
             logger.info(`|                                              |`)
@@ -67,7 +67,7 @@ const app = express()
             logger.info(`|                                              |`)
             logger.info(`|──────────────────────────────────────────────|`)
             logger.info(`|                                              |`)
-            logger.info(`|        SWAGGER: http://${Env.APP_URL}:8082        |`)
+            logger.info(`|        SWAGGER: http://${Env.APP_URL}:8081        |`)
             logger.info(`|                                              |`)
             logger.info(`╰──────────────────────────────────────────────╯`)
         })
