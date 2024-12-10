@@ -1,9 +1,12 @@
 services:
-  backend:
+  app:
     container_name: consultation-boocking-app
     image: consultation/shopify-app:1.0.0
-    build: .
+    build:
+      context: .
+      args:
+        SHOPIFY_API_KEY: d27e63e7d96d9e0fd0c50f699c23eb1c
     ports:
-      - 8081:8081 
+      - 8081:8081
     environment:
       - SHOPIFY_API_KEY=d27e63e7d96d9e0fd0c50f699c23eb1c
