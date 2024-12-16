@@ -115,6 +115,8 @@
 
   <script>
     window.selectedProducts = {{ block.settings.selected_products | json }};
+    window.shop =  {{ request.origin | json }}
+    window.routes = {{ routes | json}}
   </script>
 
   <script src="{{ 'app.js' | asset_url }}" async></script>

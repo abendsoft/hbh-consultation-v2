@@ -21,6 +21,7 @@ const halfHourData = [
   { id: 11, time: "3:00 pm" },
 ];
 
+
 /***************************** CONFIGURATIONS *****************************/
 // API Base URL (update this for different environments)
 const API_BASE_URL = "http://localhost:3333/api/v1/consultation";
@@ -51,12 +52,15 @@ defaultDate.setDate(defaultDate.getDate() + 1);
 /***************************** CONSULTATION EXTENSION *****************************/
 const ConsultationExtension = {
   order: {
+    product: null,
     productId: null,
     note: "",
     date: defaultDate.toISOString().split("T")[0],
     time: null,
   },
   products: window?.selectedProducts || [],
+  shop: window?.shop,
+  routes: window?.routes,
   consultationApiData: null,
 
   /***************************** INITIALIZER *****************************/
@@ -149,12 +153,13 @@ const ConsultationExtension = {
         <label class="as-product-wrapper ${index === 0 ? "active" : ""}">
           <p class="as-product-name">${product.title}</p>
           <p class="as-product-price">$${`${product.price / 100}.00`}</p>
-          <input type="radio" name="consultationDuration" hidden value="${product.id}" data-product="${product.title}" ${index === 0 ? "checked" : ""}>
+          <input type="radio" name="consultationDuration" hidden value="${product.variants?.[0].id}" data-product-id="${product.id}" data-product="${product.title}" ${index === 0 ? "checked" : ""}>
         </label>`
       )
       .join("");
 
-    this.order.productId = this.products[0].id;
+    this.order.product = this.products[0].id;
+    this.order.productId = this.products[0].variants?.[0].id;
     elements.summaryTitle.textContent = this.products[0].title;
     elements.summaryPrice.textContent = `$${`${this.products[0].price / 100}.00`}`;
     this.updateTimeSlots();
@@ -169,6 +174,7 @@ const ConsultationExtension = {
         if (input) {
           input.checked = true;
           this.order.productId = parseInt(input.value, 10);
+          this.order.product = parseInt(input.getAttribute('data-product-id', 10));
           elements.summaryTitle.textContent = input.dataset.product;
           this.updateTimeSlots();
         }
@@ -177,7 +183,7 @@ const ConsultationExtension = {
   },
 
   updateTimeSlots() {
-    const findProduct = this.products?.find((p) => p.id === this.order.productId)
+    const findProduct = this.products?.find((p) => p.id === this.order.product)
     const timeSlots = findProduct?.title.includes("30") ? halfHourData : hourData;
     if (!elements.timeContainer) return;
 
@@ -249,20 +255,20 @@ const ConsultationExtension = {
   },
 
   /***************************** CHECKOUT *****************************/
-  addToCart() {
+  addToCart: async function () {
     const { productId, note, date, time } = this.order;
-    fetch("cart/add.js", {
+    await fetch(`${this.shop}${this.routes.cart_add_url}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         items: [{ id: productId, quantity: 1 }],
-        note,
-        attributes: { date, time, type: "Subscription" },
+        note: note,
+        attributes: { date: date, time: time, type: "Subscription" },
       }),
     })
       .then((response) => {
         if (response.ok) {
-          alert("Product added to cart successfully!");
+          window.location.href = "/checkout";
         } else {
           console.error("Failed to add product to cart:", response.statusText);
         }
