@@ -1,0 +1,433 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.as-consultation-form {
+  gap: 20px;
+
+  @media (min-width: 768px) {
+    display: flex;
+  }
+
+  @media (min-width: 768px) and (max-width: 968px) {
+    padding: 50px 30px;
+  }
+}
+
+.as-consultation-form.loading {
+  position: relative;
+  z-index: 0;
+}
+
+.as-consultation-form.loading::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  background-color: #fffdfdc7;
+}
+.as-consultation-form.loading::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -30px;
+  margin-left: -30px;
+  width: 50px;
+  z-index: 2;
+  height: 50px;
+  border-radius: 50px;
+  border: 5px solid grey;
+  border-top-color: black;
+  -webkit-animation: loading 2s linear infinite;
+  animation: loading 2s linear infinite;
+}
+
+@-webkit-keyframes loading {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes loading {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.as-consultation-main {
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  @media (min-width: 768px) {
+    max-width: 70%;
+    width: 100%;
+  }
+}
+
+/****************** Dropdown ******************/
+.as-dropdown-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.as-dropdown-wrapper .as-dropdown-head {
+  display: flex;
+  cursor: pointer;
+  color: #fff8f0;
+  align-items: center;
+  /* padding-right: 10px; */
+  border-radius: 0.5rem;
+  background-color: #271d63;
+  font-family: Arial, Helvetica, sans-serif;
+  box-shadow: 1px 1px 5px 0px rgba(190, 236, 230, 0.75);
+  -webkit-box-shadow: 1px 1px 5px 0px rgba(190, 236, 230, 0.75);
+  -moz-box-shadow: 1px 1px 5px 0px rgba(190, 236, 230, 0.75);
+}
+
+.as-dropdown-wrapper .as-dropdown-number {
+  border-right: 1px solid #fff8f0;
+  padding: 10px 12px;
+  display: inline-block;
+  font-size: medium;
+}
+
+.as-dropdown-wrapper .as-dropdown-heading {
+  padding-left: 10px;
+  font-size: medium;
+  padding-top: 12px;
+  color: inherit;
+  padding-bottom: 12px;
+}
+
+.as-dropdown-wrapper .as-dropdown-icon {
+  margin-left: auto;
+  margin-right: 12px;
+  width: 1.5rem;
+  height: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  fill: #fff8f0;
+  rotate: 180deg;
+  transition: rotate ease-in-out 0.3s;
+}
+.as-dropdown-wrapper .as-dropdown-icon.active {
+  rotate: 0deg;
+  transition: rotate ease-in-out 0.3s;
+}
+
+.as-dropdown-wrapper .as-dropdown-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+}
+
+.as-dropdown-wrapper .as-dropdown-body.active {
+  gap: 1rem;
+  display: flex;
+  border-radius: 1rem;
+  padding: 1rem 0.8rem;
+  flex-direction: column;
+  max-height: fit-content;
+  transition: max-height 0.3s ease-in;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+}
+
+/****************** Products ******************/
+
+.as-product-wrapper {
+  display: flex;
+  color: #5d6c79;
+  cursor: pointer;
+  border-radius: 10px;
+  padding: 0.5rem 1.2rem;
+  justify-content: space-between;
+  transition: all 0.15s ease-in-out;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.as-product-wrapper:hover {
+  padding: 0.5rem 1.3rem;
+  transition: all 0.2s linear;
+  border: 1px solid rgba(0, 0, 0, 0.35);
+}
+
+.as-product-wrapper.active {
+  padding: 0.5rem 1.3rem;
+  border: 1px solid rgba(0, 0, 0, 1);
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+}
+
+.as-product-wrapper .as-product-name,
+.as-product-wrapper .as-product-price {
+  font-weight: 500;
+}
+
+.as-consultation-heading {
+  color: #5d6c79;
+}
+
+/* flatpicker class */
+
+#calendar-container {
+  width: 80%;
+}
+
+.flatpickr-day.selected {
+  border-radius: 0;
+  background-color: #3490dc;
+  color: white;
+  font-weight: bold;
+  border: 2px solid #271d63;
+}
+
+.dayContainer .today {
+  border-radius: 0;
+  background-color: #271d63;
+  color: white;
+}
+
+.flatpickr-calendar {
+  width: 100% !important;
+}
+
+#calendar-container {
+  display: none;
+}
+
+.flatpickr-wrapper {
+  width: 100% !important;
+}
+
+.flatpickr-weekdays,
+.flatpickr-rContainer,
+.flatpickr-days,
+.dayContainer {
+  max-width: 100% !important;
+  width: 100% !important;
+}
+
+.flatpickr-current-month .cur-month,
+.numInputWrapper .numInput .cur-year {
+  color: #5d6c79 !important;
+  font-weight: 700 !important;
+}
+
+.flatpickr-day.flatpickr-disabled,
+.dayContainer .today,
+.flatpickr-day.flatpickr-disabled:hover {
+  color: rgb(57 57 57 / 30%) !important;
+  background-color: transparent !important;
+}
+
+.flatpickr-day.selected,
+.flatpickr-day.startRange,
+.flatpickr-day.endRange,
+.flatpickr-day.selected.inRange,
+.flatpickr-day.startRange.inRange,
+.flatpickr-day.endRange.inRange,
+.flatpickr-day.selected:focus,
+.flatpickr-day.startRange:focus,
+.flatpickr-day.endRange:focus,
+.flatpickr-day.selected:hover,
+.flatpickr-day.startRange:hover,
+.flatpickr-day.endRange:hover,
+.flatpickr-day.selected.prevMonthDay,
+.flatpickr-day.startRange.prevMonthDay,
+.flatpickr-day.endRange.prevMonthDay,
+.flatpickr-day.selected.nextMonthDay,
+.flatpickr-day.startRange.nextMonthDay,
+.flatpickr-day.endRange.nextMonthDay {
+  background: #271d63 !important;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px !important;
+  border-color: #271d63 !important;
+}
+
+.flatpickr-current-month {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.flatpickr-day.selected {
+  background-color: #4caf50;
+  color: white;
+}
+
+.flatpickr-day.selected:hover {
+  background-color: #45a049;
+}
+
+.dayContainer {
+  display: grid !important;
+  grid-template-columns: repeat(7, 1fr) !important;
+  place-items: center;
+  gap: 16px;
+}
+
+.dayContainer span {
+  width: 100%;
+}
+
+/* consultation time */
+.consultation_appointments {
+  font-size: large;
+  color: #271d63/60;
+  margin-top: 20px;
+}
+
+.as_consultation_time_main {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.as-consultation-time {
+  gap: 5px;
+  width: 100%;
+  max-width: 120px;
+  display: flex;
+  padding: 0.3rem 0;
+  border-radius: 0.5rem;
+  font-size: medium;
+  color: #5d6c79;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #00000036;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+.as-consultation-time.disable {
+  position: relative;
+  user-select: none;
+  pointer-events: none;
+  color: rgb(0 0 0 / 30%);
+  z-index: 0;
+  overflow: hidden;
+}
+.as-consultation-time.disable::before {
+  content: "";
+  position: absolute;
+  cursor: not-allowed;
+  z-index: 1;
+  width: calc(100% + 100px);
+  height: 3px;
+  background-color: rgb(0 0 0 / 50%);
+  border-radius: 0.5rem;
+}
+
+.as-consultation-time input[type="radio"] {
+  cursor: pointer;
+}
+
+.as-consultation-time.active {
+  border: 1px solid #000000;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+}
+
+.as-consultation-time:hover {
+  border: 1px solid #00000060;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+}
+
+/* Checkout */
+
+.as_checkout_main {
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  padding: 20px 15px;
+  max-height: max-content;
+  max-width: 170px;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+
+  @media (min-width: 768px) {
+    max-width: 30%;
+  }
+}
+
+.as_checkout_consultation_summary {
+  color: #271d63;
+  font-weight: 600;
+  font-size: large;
+  letter-spacing: 0.5px;
+}
+
+.as_checkout_consult_time {
+  font-weight: 700;
+  color: #5d6c79;
+  border: 1px solid black;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.as_checkout_price {
+  font-weight: 700;
+  color: #5d6c79;
+}
+
+.as_checkout_consult_time_price {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.as_checkout_HealthConcern {
+  color: #271d63;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+.as_checkout_textarea {
+  width: 100%;
+  outline: 0;
+  min-height: 90px;
+  margin-top: 10px;
+  border-radius: 5px;
+  border: 1px solid #d1d5db;
+  padding: 0.5rem;
+}
+
+.as_checkout_textarea:focus {
+  border: 1px solid #271d63;
+  outline: 0;
+}
+
+.as_checkout_button {
+  color: #fff8f0;
+  cursor: pointer;
+  background-color: #271d63;
+  padding: 10px;
+  max-width: 100%;
+  width: 100%;
+  font-size: large;
+  font-weight: 500;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.as-error {
+  color: red;
+  font-weight: 500;
+}

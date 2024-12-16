@@ -1,0 +1,195 @@
+{% if block.settings.enable_consultation %}
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
+  >
+  {{ 'styles.css' | asset_url | stylesheet_tag }}
+
+  <form id="as-consultation-extension" class="as-consultation-form loading">
+    <!-- Left Column -->
+
+    <div class="as-consultation-main">
+      <div id="as-dropdown" class="as-dropdown-wrapper">
+        <div
+          class="as-dropdown-head"
+          {% if block.settings.color_picker != blank %}
+            style="background-color:{{  block.settings.color_picker }}"
+          {% endif %}
+        >
+          <span class="as-dropdown-number">1</span>
+          {% if block.settings.product_dropdown_heading != blank %}
+            <h3 class="as-dropdown-heading">
+              {{ block.settings.product_dropdown_heading }}
+            </h3>
+          {% endif %}
+          <span class="as-dropdown-icon active">
+            <svg viewBox="0 0 1024 1024">
+              <path
+                d="M989.44 339.84a36.8 36.8 0 0 0-6.72-10.56 32 32 0 0 0-45.44 0 36.8 36.8 0 0 0-6.72 10.56 26.56 26.56 0 0 0-2.56 12.16 32 32 0 1 0 64 0 32 32 0 0 0-2.56-12.16zM844.16 402.24l-96 75.52a32 32 0 0 0 39.68 50.24l96-75.52a32 32 0 0 0-39.68-50.24zM652.16 553.28L512 663.36 83.84 326.72a32 32 0 0 0-39.68 50.24l448 352a32 32 0 0 0 39.68 0l160-125.76a32 32 0 0 0-39.68-50.24z">
+              </path>
+            </svg>
+          </span>
+        </div>
+
+        <!-- Consultation duration options -->
+        {% if block.settings.selected_products != blank %}
+          <div id="as-product-container" class="as-dropdown-body active"></div>
+        {% endif %}
+      </div>
+
+      <!-- Select Date and Time -->
+
+      <div id="as-dropdown" class="as-dropdown-wrapper">
+        <div
+          class="as-dropdown-head"
+          {% if block.settings.color_picker != blank %}
+            style="background-color:{{  block.settings.color_picker }}"
+          {% endif %}
+        >
+          <span class="as-dropdown-number">2</span>
+          {% if block.settings.date_dropdown_heading != blank %}
+            <h3 class="as-dropdown-heading">
+              {{ block.settings.date_dropdown_heading }}
+            </h3>
+          {% endif %}
+          <span class="as-dropdown-icon active">
+            <svg viewBox="0 0 1024 1024">
+              <path
+                d="M989.44 339.84a36.8 36.8 0 0 0-6.72-10.56 32 32 0 0 0-45.44 0 36.8 36.8 0 0 0-6.72 10.56 26.56 26.56 0 0 0-2.56 12.16 32 32 0 1 0 64 0 32 32 0 0 0-2.56-12.16zM844.16 402.24l-96 75.52a32 32 0 0 0 39.68 50.24l96-75.52a32 32 0 0 0-39.68-50.24zM652.16 553.28L512 663.36 83.84 326.72a32 32 0 0 0-39.68 50.24l448 352a32 32 0 0 0 39.68 0l160-125.76a32 32 0 0 0-39.68-50.24z">
+              </path>
+            </svg>
+          </span>
+        </div>
+
+        <!-- consultation  date -->
+        <div id="as-consultation-container" class="as-dropdown-body active">
+          <div class="as_consultation_date">
+            {% if block.settings.heading != blank %}
+              <p class="as-consultation-heading">
+                {{ block.settings.heading }}
+              </p>
+            {% endif %}
+            <!-- Flatpicker -->
+            <div id="calendar-container"></div>
+          </div>
+          <!-- consultation time -->
+          <small class="as-error" id="as-date-error"></small>
+          <div id="as-consultation-time-container" class="as_consultation_time_main"></div>
+          <small class="as-error" id="as-time-error"></small>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2nd Column -->
+    <div class="as_checkout_main">
+      <div class="as_checkout_column">
+        {% if block.settings.order_summary != blank %}
+          <p class="as_checkout_consultation_summary">{{ block.settings.order_summary }}</p>
+        {% endif %}
+        <div class="as_checkout_consult_time_price">
+          <p class="as_checkout_consult_time"></p>
+          <p class="as_checkout_price"></p>
+        </div>
+        {% if block.settings.note != blank %}
+          <p class="as_checkout_HealthConcern">{{ block.settings.note }}</p>
+        {% endif %}
+        <textarea
+          class="as_checkout_textarea"
+          {% if block.settings.note_placeholder != blank %}
+            placeholder="{{ block.settings.note_placeholder }}"
+          {% endif -%}
+        ></textarea>
+        <small class="as-error" id="as-note-error"></small>
+        <button
+          type="submit"
+          class="as_checkout_button"
+          {% if block.settings.color_picker != blank %}
+            style="background-color:{{  block.settings.color_picker }}"
+          {% endif %}
+        >
+          Checkout
+        </button>
+      </div>
+    </div>
+  </form>
+
+  <script>
+    window.selectedProducts = {{ block.settings.selected_products | json }};
+  </script>
+
+  <script src="{{ 'app.js' | asset_url }}" async></script>
+  {% if block.settings.custom_css != blank %}
+    <style>
+      {{ block.settings.custom_css }}
+    </style>
+  {% endif %}
+{% endif %}
+
+{% schema %}
+{
+  "name": "Consultation Booking",
+  "target": "section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable_consultation",
+      "label": "Enable Consultation Boocking",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "product_dropdown_heading",
+      "label": "Product Dropdown Heading",
+      "default": "Enter product dropdown heading"
+    },
+    {
+      "limit": 2,
+      "type": "product_list",
+      "id": "selected_products",
+      "label": "Select Products",
+      "info": "Select 2 products for consultation"
+    },
+    {
+      "type": "color",
+      "id": "color_picker",
+      "label": "Select Color"
+    },
+    {
+      "type": "text",
+      "id": "date_dropdown_heading",
+      "label": "Date Dropdown Heading",
+      "default": "Enter date dropdown heading"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Enter heading text"
+    },
+    {
+      "type": "text",
+      "id": "order_summary",
+      "label": "Order Summary Title",
+      "default": "Enter order summaty title"
+    },
+    {
+      "type": "text",
+      "id": "note",
+      "label": "Note Label",
+      "default": "Enter note label"
+    },
+    {
+      "type": "text",
+      "id": "note_placeholder",
+      "label": "Note Placeholder",
+      "default": "Enter note placeholder"
+    },
+    {
+      "type": "textarea",
+      "id": "custom_css",
+      "label": "Custom CSS",
+      "info": "Add custom CSS here to style the popup."
+    }
+  ]
+}
+{% endschema %}
