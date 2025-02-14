@@ -1,6 +1,6 @@
 import { NavMenu } from '@shopify/app-bridge-react'
 import { router } from '@src/router/router'
-import { useTranslation } from 'react-i18next'
+// import { useTranslation } from 'react-i18next'
 import { RouterProvider } from 'react-router-dom'
 import { useRouter } from '@src/hooks'
 import { PolarisClientProvider, QueryClientProvider } from '@src/utils/providers'
@@ -14,14 +14,14 @@ export const App = () => {
     const routes = useRouter(pages)
     const routerInstance = router(routes)
 
-    const { t } = useTranslation()
+    // const { t } = useTranslation()
 
     return (
         <PolarisClientProvider>
             <QueryClientProvider>
                 <NavMenu>
                     <a href='/' rel='home' />
-                    <a href='/pagename'>{t('NavigationMenu.pageName')}</a>
+                    {/* <a href='/pagename'>{t('NavigationMenu.pageName')}</a> */}
                 </NavMenu>
                 <RouterProvider router={routerInstance} />
             </QueryClientProvider>
