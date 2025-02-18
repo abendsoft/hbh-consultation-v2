@@ -100,6 +100,19 @@
           {% endif -%}
         ></textarea>
         <small class="as-error" id="as-note-error"></small>
+        {% if block.settings.phone_number_label != blank %}
+          <p class="as_checkout_HealthConcern">{{ block.settings.phone_number_label }}</p>
+        {% endif %}
+        <input
+          type="tel"
+          id="phone-number"
+          value="{{ customer.phone }}"
+          class="as_phone_number"
+          {% if block.settings.phone_number_placeholder != blank %}
+            placeholder="{{ block.settings.phone_number_placeholder }}"
+          {% endif -%}
+        >
+        <small class="as-error" id="as-phone-error"></small>
         <button
           type="submit"
           class="as_checkout_button"
@@ -116,7 +129,6 @@
   <script>
     window.selectedProducts = {{ block.settings.selected_products | json }};
     window.shop =  {{ request.origin | json }}
-    window.routes = {{ routes | json}}
   </script>
 
   <script src="{{ 'app.js' | asset_url }}" async></script>
@@ -191,6 +203,18 @@
       "id": "custom_css",
       "label": "Custom CSS",
       "info": "Add custom CSS here to style the popup."
+    },
+    {
+      "type": "text",
+      "id": "phone_number_label",
+      "label": "Phone Number Label",
+      "default": "Phone Number"
+    },
+    {
+      "type": "text",
+      "id": "phone_number_placeholder",
+      "label": "Phone Number Placeholder",
+      "default": "+1 415-555-1234"
     }
   ]
 }

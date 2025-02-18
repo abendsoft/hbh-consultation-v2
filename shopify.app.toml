@@ -6,11 +6,6 @@ embedded = true
 name = "hbh-consultation-booking"
 handle = "hbh-consultation-booking"
 
-[build]
-automatically_update_urls_on_dev = false
-dev_store_url = "muneeb-development.myshopify.com"
-include_config_on_deploy = true
-
 [webhooks]
 api_version = "2024-10"
 
@@ -39,3 +34,8 @@ redirect_urls = [
 
 [pos]
 embedded = false
+
+[build]
+dev_store_url = "muneeb-development.myshopify.com"
+automatically_update_urls_on_dev = false
+include_config_on_deploy = true

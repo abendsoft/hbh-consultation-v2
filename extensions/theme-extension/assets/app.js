@@ -22,12 +22,18 @@ const halfHourData = [
 ];
 
 /***************************** CONFIGURATIONS *****************************/
+
 // API Base URL (update this for different environments)
+
 const API_BASE_URL =
   "https://consultation-api.abendltd.com/api/v1/consultation";
 
+// const API_BASE_URL = "http://localhost:3333/api/v1/consultation";
+
 /***************************** ELEMENTS *****************************/
+
 // Grabbing relevant DOM elements for interaction and validation.
+
 const elements = {
   noteInput: document.querySelector(".as_checkout_textarea"),
   summaryTitle: document.querySelector(".as_checkout_consult_time"),
@@ -37,19 +43,24 @@ const elements = {
   productContainer: document.querySelector("#as-product-container"),
   timeContainer: document.querySelector("#as-consultation-time-container"),
   calendarContainer: document.querySelector("#calendar-container"),
+  phoneNumber: document.querySelector("#phone-number"),
   errors: {
     note: document.querySelector("#as-note-error"),
+    phone: document.querySelector("#as-phone-error"),
     date: document.querySelector("#as-date-error"),
     time: document.querySelector("#as-time-error"),
   },
 };
 
 /***************************** DEFAULT VALUES *****************************/
+
 // Set the default date to tomorrow for booking.
+
 const defaultDate = new Date();
 defaultDate.setDate(defaultDate.getDate() + 1);
 
 /***************************** CONSULTATION EXTENSION *****************************/
+
 const ConsultationExtension = {
   order: {
     product: null,
@@ -57,16 +68,16 @@ const ConsultationExtension = {
     note: "",
     date: defaultDate.toISOString().split("T")[0],
     time: null,
+    phone: elements.phoneNumber.value || null,
   },
   products: window?.selectedProducts || [],
   shop: window?.shop,
-  routes: window?.routes,
   consultationApiData: null,
   isSaturday: false,
 
   /***************************** INITIALIZER *****************************/
+
   async init() {
-    console.log("Initializing Consultation Extension...");
     this.showLoader();
     await this.fetchBookedTimes(this.order.date);
     this.insertFlatpickrScript(() => {
@@ -80,6 +91,7 @@ const ConsultationExtension = {
   },
 
   /***************************** API FUNCTIONS *****************************/
+
   async fetchBookedTimes(date) {
     try {
       this.showLoader();
@@ -110,6 +122,7 @@ const ConsultationExtension = {
   },
 
   /***************************** UI FUNCTIONS *****************************/
+
   showLoader() {
     elements.formElement?.classList.add("loading");
   },
@@ -123,6 +136,11 @@ const ConsultationExtension = {
       (error) => (error.style.display = "none")
     );
   },
+
+  /**
+   * @param {HTMLElement} element
+   * @param {boolean} show
+   */
 
   toggleError(element, show, message = "") {
     element.style.display = show ? "block" : "none";
@@ -264,34 +282,71 @@ const ConsultationExtension = {
     });
   },
 
+  /**
+   * Validates a US phone number format.
+   *
+   * @param {string} number - The phone number to validate.
+   * @returns {boolean} True if valid, false otherwise.
+   */
+
+  validatePhoneNumber(number) {
+    const usPhonePattern = /^\+1\s?\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}$/;
+    return usPhonePattern.test(number);
+  },
+
   setupFormSubmission() {
+    let validate = false;
     elements.noteInput?.addEventListener("input", (e) => {
-      this.order.note = e.target.value;
+      this.order.note = e.target?.value;
       this.toggleError(elements.errors.note, false);
+    });
+
+    elements.phoneNumber?.addEventListener("input", (e) => {
+      const phoneNumber = e.target.value;
+      validate = this.validatePhoneNumber(phoneNumber);
+      this.order.phone = phoneNumber;
+      this.toggleError(
+        elements.errors.phone,
+        !validate,
+        "Please enter a valid phone number"
+      );
     });
 
     elements.formElement?.addEventListener("submit", (e) => {
       e.preventDefault();
-      const { note, date, time } = this.order;
+      const { note, date, time, phone } = this.order;
+      const isValidPhone = this.validatePhoneNumber(phone);
       this.toggleError(elements.errors.note, !note, "Note is required.");
       this.toggleError(elements.errors.date, !date, "Please select a date.");
       this.toggleError(elements.errors.time, !time, "Please select a time.");
-      if (note && date && time) {
+      this.toggleError(
+        elements.errors.phone,
+        !isValidPhone,
+        "Please enter a valid phone number"
+      );
+
+      if (note && date && time && isValidPhone) {
         this.addToCart();
       }
     });
   },
 
   /***************************** CHECKOUT *****************************/
+
   addToCart: async function () {
-    const { productId, note, date, time } = this.order;
+    const { productId, note, date, time, phone } = this.order;
     await fetch(`${this.shop}/cart/add`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         items: [{ id: productId, quantity: 1 }],
         note: note,
-        attributes: { date: date, time: time, type: "Subscription" },
+        attributes: {
+          date: date,
+          time: time,
+          phone: phone,
+          type: "Subscription",
+        },
       }),
     })
       .then((response) => {
@@ -306,4 +361,5 @@ const ConsultationExtension = {
 };
 
 /***************************** INITIALIZE *****************************/
+
 ConsultationExtension.init();

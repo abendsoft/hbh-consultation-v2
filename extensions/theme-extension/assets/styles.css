@@ -409,9 +409,19 @@
   padding: 0.5rem;
 }
 
-.as_checkout_textarea:focus {
+.as_checkout_textarea:focus,
+.as_phone_number:focus {
   border: 1px solid #271d63;
   outline: 0;
+}
+
+.as_phone_number {
+  width: 100%;
+  outline: none;
+  margin: 10px 0;
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: 1px solid #d1d5db;
 }
 
 .as_checkout_button {
