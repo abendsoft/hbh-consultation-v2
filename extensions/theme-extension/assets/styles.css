@@ -6,9 +6,11 @@
 
 .as-consultation-form {
   gap: 20px;
+  display: flex;
+  flex-direction: column;
 
   @media (min-width: 768px) {
-    display: flex;
+    flex-direction: row;
   }
 
   @media (min-width: 768px) and (max-width: 968px) {
@@ -71,11 +73,6 @@
   display: flex;
   flex-direction: column;
   gap: 1rem;
-
-  @media (min-width: 768px) {
-    max-width: 70%;
-    width: 100%;
-  }
 }
 
 /****************** Dropdown ******************/
@@ -351,17 +348,15 @@
 /* Checkout */
 
 .as_checkout_main {
-  border: 1px solid #d1d5db;
-  border-radius: 0.5rem;
-  padding: 20px 15px;
-  max-height: max-content;
-  max-width: 170px;
-  max-width: 400px;
   width: 100%;
+  padding: 20px 15px;
+  border-radius: 1rem;
+  max-height: max-content;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
 
   @media (min-width: 768px) {
-    max-width: 30%;
+    max-width: 300px;
+    border: 1px solid #d1d5db;
   }
 }
 
@@ -422,6 +417,14 @@
   padding: 0.5rem;
   border-radius: 5px;
   border: 1px solid #d1d5db;
+}
+
+.as-consultation-checkbox {
+  gap: 0.5rem;
+  display: flex;
+  user-select: none;
+  align-items: center;
+  accent-color: #271d63;
 }
 
 .as_checkout_button {

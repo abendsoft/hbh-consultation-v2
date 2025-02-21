@@ -44,11 +44,13 @@ const elements = {
   timeContainer: document.querySelector("#as-consultation-time-container"),
   calendarContainer: document.querySelector("#calendar-container"),
   phoneNumber: document.querySelector("#phone-number"),
+  termsCondition: document.querySelector("#consultation-checkbox"),
   errors: {
     note: document.querySelector("#as-note-error"),
     phone: document.querySelector("#as-phone-error"),
     date: document.querySelector("#as-date-error"),
     time: document.querySelector("#as-time-error"),
+    terms: document.querySelector("#as-terms-error"),
   },
 };
 
@@ -63,12 +65,13 @@ defaultDate.setDate(defaultDate.getDate() + 1);
 
 const ConsultationExtension = {
   order: {
+    note: "",
+    time: null,
     product: null,
     productId: null,
-    note: "",
-    date: defaultDate.toISOString().split("T")[0],
-    time: null,
+    termsCondition: false,
     phone: elements.phoneNumber.value || null,
+    date: defaultDate.toISOString().split("T")[0],
   },
   products: window?.selectedProducts || [],
   shop: window?.shop,
@@ -300,6 +303,10 @@ const ConsultationExtension = {
       this.order.note = e.target?.value;
       this.toggleError(elements.errors.note, false);
     });
+    elements.termsCondition?.addEventListener("input", (e) => {
+      this.order.termsCondition = e.target?.checked;
+      this.toggleError(elements.errors.terms, false);
+    });
 
     elements.phoneNumber?.addEventListener("input", (e) => {
       const phoneNumber = e.target.value;
@@ -314,18 +321,23 @@ const ConsultationExtension = {
 
     elements.formElement?.addEventListener("submit", (e) => {
       e.preventDefault();
-      const { note, date, time, phone } = this.order;
+      const { note, date, time, phone, termsCondition } = this.order;
       const isValidPhone = this.validatePhoneNumber(phone);
       this.toggleError(elements.errors.note, !note, "Note is required.");
       this.toggleError(elements.errors.date, !date, "Please select a date.");
       this.toggleError(elements.errors.time, !time, "Please select a time.");
+      this.toggleError(
+        elements.errors.terms,
+        !termsCondition,
+        "Please agree to the terms and conditions to continue."
+      );
       this.toggleError(
         elements.errors.phone,
         !isValidPhone,
         "Please enter a valid phone number"
       );
 
-      if (note && date && time && isValidPhone) {
+      if (note && date && time && isValidPhone && termsCondition) {
         this.addToCart();
       }
     });
@@ -334,7 +346,7 @@ const ConsultationExtension = {
   /***************************** CHECKOUT *****************************/
 
   addToCart: async function () {
-    const { productId, note, date, time, phone } = this.order;
+    const { productId, note, date, time, phone, termsCondition } = this.order;
     await fetch(`${this.shop}/cart/add`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -346,6 +358,7 @@ const ConsultationExtension = {
           time: time,
           phone: phone,
           type: "Subscription",
+          terms_and_condition: termsCondition,
         },
       }),
     })

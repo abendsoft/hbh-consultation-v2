@@ -113,6 +113,13 @@
           {% endif -%}
         >
         <small class="as-error" id="as-phone-error"></small>
+        {%- if block.settings.terms_and_condition_text != blank -%}
+          <label for="consultation-checkbox" class="as-consultation-checkbox">
+            <input type="checkbox" id="consultation-checkbox">
+            {{ block.settings.terms_and_condition_text }}
+          </label>
+          <small class="as-error" id="as-terms-error"></small>
+        {%- endif -%}
         <button
           type="submit"
           class="as_checkout_button"
@@ -215,6 +222,11 @@
       "id": "phone_number_placeholder",
       "label": "Phone Number Placeholder",
       "default": "+1 415-555-1234"
+    },
+    {
+      "type": "richtext",
+      "id": "terms_and_condition_text",
+      "label": "Link Text"
     }
   ]
 }
