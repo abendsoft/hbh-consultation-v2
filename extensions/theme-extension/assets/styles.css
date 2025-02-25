@@ -69,6 +69,7 @@
 }
 
 .as-consultation-main {
+  width: 100%;
   max-width: 100%;
   display: flex;
   flex-direction: column;
@@ -223,6 +224,12 @@
 .numInputWrapper .numInput .cur-year {
   color: #5d6c79 !important;
   font-weight: 700 !important;
+}
+
+.flatpickr-day.prevMonthDay,
+.flatpickr-day.nextMonthDay {
+  visibility: hidden;
+  pointer-events: none;
 }
 
 .flatpickr-day.flatpickr-disabled,

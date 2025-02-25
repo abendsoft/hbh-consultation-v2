@@ -267,12 +267,18 @@ const ConsultationExtension = {
       inline: true,
       static: true,
       minDate: new Date().fp_incr(1),
+      showMonths: 1,
       enable: [
         function (date) {
           if (date.getDay() === 0) {
             return false;
           }
           return date >= new Date();
+        },
+      ],
+      disable: [
+        function (date) {
+          return date.getDay() === 0;
         },
       ],
       defaultDate: defaultDate,
@@ -310,8 +316,12 @@ const ConsultationExtension = {
 
     elements.phoneNumber?.addEventListener("input", (e) => {
       const phoneNumber = e.target.value;
-      validate = this.validatePhoneNumber(phoneNumber);
-      this.order.phone = phoneNumber;
+      validate = this.validatePhoneNumber(
+        phoneNumber.includes("+1") ? phoneNumber : `+1${phoneNumber}`
+      );
+      this.order.phone = phoneNumber.includes("+1")
+        ? phoneNumber
+        : `+1${phoneNumber}`;
       this.toggleError(
         elements.errors.phone,
         !validate,
