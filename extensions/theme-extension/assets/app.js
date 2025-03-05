@@ -104,9 +104,12 @@ const ConsultationExtension = {
       });
       if (response.ok) {
         const data = await response.json();
-        if (data.code === 200) {
+        if (data.code === 200 && Array.isArray(data.result)) {
           this.consultationApiData =
-            (await data.result?.map((t) => t.time)) || [];
+            data.result
+              .filter((t) => t.status !== "cancel")
+              .map((t) => t.time) || [];
+
           this.updateTimeSlots();
         } else if (data.code === 404) {
           this.consultationApiData = [];
