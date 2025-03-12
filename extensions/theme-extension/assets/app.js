@@ -25,7 +25,7 @@ const halfHourData = [
 
 // API Base URL (update this for different environments)
 
-const API_BASE_URL = "https://consultation-api.abendltd.com/api/v1//booking";
+const API_BASE_URL = "https://consultation-api.abendltd.com/api/v1/booking";
 
 // const API_BASE_URL = "http://localhost:3333/api/v1/consultation";
 
@@ -106,7 +106,8 @@ const ConsultationExtension = {
         if (data.code === 200 && Array.isArray(data.result)) {
           this.consultationApiData =
             data.result
-              .filter((t) => t.status !== "cancel" || "canceled")
+              .filter((t) => t.status !== "canceled")
+              .filter((t) => t.status !== "completed")
               .map((t) => t.time) || [];
 
           this.updateTimeSlots();
